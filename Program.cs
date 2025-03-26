@@ -16,7 +16,7 @@ namespace E_Commerce
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1()); // Ensure this is your main form
         }
     }
 }
