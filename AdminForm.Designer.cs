@@ -77,6 +77,12 @@
             this.pictureBoxProduct = new System.Windows.Forms.PictureBox();
             this.btnShowImage = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnDeleteImage = new System.Windows.Forms.Button();
+            this.btnUpdateCart = new System.Windows.Forms.Button();
+            this.btnAddCart = new System.Windows.Forms.Button();
+            this.txtCartQuantity = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -181,7 +187,7 @@
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(172, 192);
+            this.btnAddUser.Location = new System.Drawing.Point(173, 191);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(75, 23);
             this.btnAddUser.TabIndex = 15;
@@ -191,7 +197,7 @@
             // 
             // btnDeleteUser
             // 
-            this.btnDeleteUser.Location = new System.Drawing.Point(172, 267);
+            this.btnDeleteUser.Location = new System.Drawing.Point(173, 249);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteUser.TabIndex = 16;
@@ -201,7 +207,7 @@
             // 
             // btnUpdateUser
             // 
-            this.btnUpdateUser.Location = new System.Drawing.Point(172, 232);
+            this.btnUpdateUser.Location = new System.Drawing.Point(173, 220);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateUser.TabIndex = 17;
@@ -222,12 +228,12 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(298, 303);
             this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.Size = new System.Drawing.Size(280, 135);
+            this.dgvProducts.Size = new System.Drawing.Size(280, 96);
             this.dgvProducts.TabIndex = 27;
             // 
             // btnUpdateProduct
             // 
-            this.btnUpdateProduct.Location = new System.Drawing.Point(472, 205);
+            this.btnUpdateProduct.Location = new System.Drawing.Point(472, 217);
             this.btnUpdateProduct.Name = "btnUpdateProduct";
             this.btnUpdateProduct.Size = new System.Drawing.Size(95, 23);
             this.btnUpdateProduct.TabIndex = 26;
@@ -237,16 +243,17 @@
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(472, 237);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(472, 249);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(95, 23);
             this.btnDeleteProduct.TabIndex = 25;
             this.btnDeleteProduct.Text = "Delete Product";
             this.btnDeleteProduct.UseVisualStyleBackColor = true;
+            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click_1);
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(472, 172);
+            this.btnAddProduct.Location = new System.Drawing.Point(472, 184);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(95, 23);
             this.btnAddProduct.TabIndex = 24;
@@ -293,7 +300,7 @@
             // 
             // btnUploadImage
             // 
-            this.btnUploadImage.Location = new System.Drawing.Point(472, 269);
+            this.btnUploadImage.Location = new System.Drawing.Point(392, 541);
             this.btnUploadImage.Name = "btnUploadImage";
             this.btnUploadImage.Size = new System.Drawing.Size(95, 23);
             this.btnUploadImage.TabIndex = 28;
@@ -311,7 +318,7 @@
             // 
             // btnDeleteCart
             // 
-            this.btnDeleteCart.Location = new System.Drawing.Point(626, 232);
+            this.btnDeleteCart.Location = new System.Drawing.Point(728, 249);
             this.btnDeleteCart.Name = "btnDeleteCart";
             this.btnDeleteCart.Size = new System.Drawing.Size(100, 23);
             this.btnDeleteCart.TabIndex = 34;
@@ -321,7 +328,7 @@
             // 
             // txtCartId
             // 
-            this.txtCartId.Location = new System.Drawing.Point(626, 195);
+            this.txtCartId.Location = new System.Drawing.Point(622, 193);
             this.txtCartId.Name = "txtCartId";
             this.txtCartId.Size = new System.Drawing.Size(100, 20);
             this.txtCartId.TabIndex = 30;
@@ -454,7 +461,7 @@
             // pictureBoxProduct
             // 
             this.pictureBoxProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBoxProduct.Location = new System.Drawing.Point(298, 444);
+            this.pictureBoxProduct.Location = new System.Drawing.Point(298, 405);
             this.pictureBoxProduct.Name = "pictureBoxProduct";
             this.pictureBoxProduct.Size = new System.Drawing.Size(280, 131);
             this.pictureBoxProduct.TabIndex = 54;
@@ -462,7 +469,7 @@
             // 
             // btnShowImage
             // 
-            this.btnShowImage.Location = new System.Drawing.Point(472, 138);
+            this.btnShowImage.Location = new System.Drawing.Point(493, 541);
             this.btnShowImage.Name = "btnShowImage";
             this.btnShowImage.Size = new System.Drawing.Size(95, 23);
             this.btnShowImage.TabIndex = 55;
@@ -479,11 +486,74 @@
             this.label16.TabIndex = 56;
             this.label16.Text = "Search Name:";
             // 
+            // btnDeleteImage
+            // 
+            this.btnDeleteImage.Location = new System.Drawing.Point(291, 541);
+            this.btnDeleteImage.Name = "btnDeleteImage";
+            this.btnDeleteImage.Size = new System.Drawing.Size(95, 23);
+            this.btnDeleteImage.TabIndex = 57;
+            this.btnDeleteImage.Text = "Delete Image";
+            this.btnDeleteImage.UseVisualStyleBackColor = true;
+            this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click_1);
+            // 
+            // btnUpdateCart
+            // 
+            this.btnUpdateCart.Location = new System.Drawing.Point(728, 220);
+            this.btnUpdateCart.Name = "btnUpdateCart";
+            this.btnUpdateCart.Size = new System.Drawing.Size(100, 23);
+            this.btnUpdateCart.TabIndex = 58;
+            this.btnUpdateCart.Text = "Update Cart";
+            this.btnUpdateCart.UseVisualStyleBackColor = true;
+            this.btnUpdateCart.Click += new System.EventHandler(this.btnUpdateCart_Click);
+            // 
+            // btnAddCart
+            // 
+            this.btnAddCart.Location = new System.Drawing.Point(728, 191);
+            this.btnAddCart.Name = "btnAddCart";
+            this.btnAddCart.Size = new System.Drawing.Size(100, 23);
+            this.btnAddCart.TabIndex = 59;
+            this.btnAddCart.Text = "Add Cart";
+            this.btnAddCart.UseVisualStyleBackColor = true;
+            this.btnAddCart.Click += new System.EventHandler(this.btnAddCart_Click);
+            // 
+            // txtCartQuantity
+            // 
+            this.txtCartQuantity.Location = new System.Drawing.Point(622, 223);
+            this.txtCartQuantity.Name = "txtCartQuantity";
+            this.txtCartQuantity.Size = new System.Drawing.Size(100, 20);
+            this.txtCartQuantity.TabIndex = 61;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Location = new System.Drawing.Point(579, 196);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(40, 13);
+            this.label17.TabIndex = 62;
+            this.label17.Text = "Cart ID";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Location = new System.Drawing.Point(574, 227);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(46, 13);
+            this.label18.TabIndex = 63;
+            this.label18.Text = "Quantity";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 587);
+            this.ClientSize = new System.Drawing.Size(833, 587);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.txtCartQuantity);
+            this.Controls.Add(this.btnAddCart);
+            this.Controls.Add(this.btnUpdateCart);
+            this.Controls.Add(this.btnDeleteImage);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.btnShowImage);
             this.Controls.Add(this.pictureBoxProduct);
@@ -588,5 +658,11 @@
         private System.Windows.Forms.PictureBox pictureBoxProduct;
         private System.Windows.Forms.Button btnShowImage;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnDeleteImage;
+        private System.Windows.Forms.Button btnUpdateCart;
+        private System.Windows.Forms.Button btnAddCart;
+        private System.Windows.Forms.TextBox txtCartQuantity;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
