@@ -35,6 +35,12 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.asda = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSignUp = new System.Windows.Forms.Button();
+            this.txtUsernameee = new System.Windows.Forms.TextBox();
+            this.lblPassworddd = new System.Windows.Forms.Label();
+            this.lblUsernameee = new System.Windows.Forms.Label();
+            this.txtPassworddd = new System.Windows.Forms.TextBox();
+            this.btnConfirmSignUp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +89,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(811, 440);
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // asda
             // 
@@ -105,12 +110,81 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Password";
             // 
+            // btnSignUp
+            // 
+            this.btnSignUp.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnSignUp.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSignUp.FlatAppearance.BorderSize = 0;
+            this.btnSignUp.Location = new System.Drawing.Point(590, 267);
+            this.btnSignUp.Name = "btnSignUp";
+            this.btnSignUp.Size = new System.Drawing.Size(75, 23);
+            this.btnSignUp.TabIndex = 8;
+            this.btnSignUp.Text = "Sign Up?";
+            this.btnSignUp.UseVisualStyleBackColor = false;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
+            // 
+            // txtUsernameee
+            // 
+            this.txtUsernameee.Location = new System.Drawing.Point(472, 337);
+            this.txtUsernameee.Name = "txtUsernameee";
+            this.txtUsernameee.Size = new System.Drawing.Size(100, 20);
+            this.txtUsernameee.TabIndex = 9;
+            this.txtUsernameee.Visible = false;
+            // 
+            // lblPassworddd
+            // 
+            this.lblPassworddd.AutoSize = true;
+            this.lblPassworddd.Location = new System.Drawing.Point(578, 340);
+            this.lblPassworddd.Name = "lblPassworddd";
+            this.lblPassworddd.Size = new System.Drawing.Size(53, 13);
+            this.lblPassworddd.TabIndex = 10;
+            this.lblPassworddd.Text = "Password";
+            this.lblPassworddd.Visible = false;
+            // 
+            // lblUsernameee
+            // 
+            this.lblUsernameee.AutoSize = true;
+            this.lblUsernameee.Location = new System.Drawing.Point(411, 340);
+            this.lblUsernameee.Name = "lblUsernameee";
+            this.lblUsernameee.Size = new System.Drawing.Size(55, 13);
+            this.lblUsernameee.TabIndex = 11;
+            this.lblUsernameee.Text = "Username";
+            this.lblUsernameee.Visible = false;
+            // 
+            // txtPassworddd
+            // 
+            this.txtPassworddd.Location = new System.Drawing.Point(637, 337);
+            this.txtPassworddd.Name = "txtPassworddd";
+            this.txtPassworddd.Size = new System.Drawing.Size(100, 20);
+            this.txtPassworddd.TabIndex = 13;
+            this.txtPassworddd.Visible = false;
+            // 
+            // btnConfirmSignUp
+            // 
+            this.btnConfirmSignUp.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnConfirmSignUp.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnConfirmSignUp.FlatAppearance.BorderSize = 0;
+            this.btnConfirmSignUp.Location = new System.Drawing.Point(530, 368);
+            this.btnConfirmSignUp.Name = "btnConfirmSignUp";
+            this.btnConfirmSignUp.Size = new System.Drawing.Size(110, 23);
+            this.btnConfirmSignUp.TabIndex = 14;
+            this.btnConfirmSignUp.Text = "Confirm Sign Up";
+            this.btnConfirmSignUp.UseVisualStyleBackColor = false;
+            this.btnConfirmSignUp.Visible = false;
+            this.btnConfirmSignUp.Click += new System.EventHandler(this.btnConfirmSignUp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(800, 369);
+            this.ClientSize = new System.Drawing.Size(814, 430);
+            this.Controls.Add(this.btnConfirmSignUp);
+            this.Controls.Add(this.txtPassworddd);
+            this.Controls.Add(this.lblUsernameee);
+            this.Controls.Add(this.lblPassworddd);
+            this.Controls.Add(this.txtUsernameee);
+            this.Controls.Add(this.btnSignUp);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.asda);
             this.Controls.Add(this.login);
@@ -133,6 +207,12 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label asda;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSignUp;
+        private System.Windows.Forms.TextBox txtUsernameee;
+        private System.Windows.Forms.Label lblPassworddd;
+        private System.Windows.Forms.Label lblUsernameee;
+        private System.Windows.Forms.TextBox txtPassworddd;
+        private System.Windows.Forms.Button btnConfirmSignUp;
     }
 }
 
