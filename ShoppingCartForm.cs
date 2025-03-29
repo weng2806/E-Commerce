@@ -163,7 +163,6 @@ namespace E_Commerce
                     }
                 }
 
-                // ✅ Check for low stock warning (after checking availability)
                 foreach (var item in cartItems)
                 {
                     if (item.stock - item.quantity < 5)
@@ -172,7 +171,6 @@ namespace E_Commerce
                     }
                 }
 
-                // ❌ REMOVE this.Hide();
                 PaymentForm paymentForm = new PaymentForm(userId, totalAmount, this);
                 DialogResult paymentResult = paymentForm.ShowDialog();
 
@@ -182,8 +180,7 @@ namespace E_Commerce
                     {
                         conn.Open();
 
-                        // ✅ Insert order
-                        string insertOrderQuery = @"
+                string insertOrderQuery = @"
                 INSERT INTO orders (user_id, total_price, payment_method, order_date)
                 VALUES (@user_id, @total_price, @payment_method, GETDATE());";
 
@@ -198,8 +195,7 @@ namespace E_Commerce
 
                     MessageBox.Show("Order placed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // ❌ REMOVE this.Close();
-                    LoadCart(); // Refresh the cart after placing an order
+                    LoadCart(); 
             }
         }
 
@@ -227,7 +223,7 @@ namespace E_Commerce
                 using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                 {
                     cmdCheck.Parameters.AddWithValue("@cart_id", cartItemId);
-                    var checkResult = cmdCheck.ExecuteScalar(); // Renamed from result to checkResult
+                    var checkResult = cmdCheck.ExecuteScalar(); 
                     if (checkResult != null)
                     {
                         currentQuantity = Convert.ToInt32(checkResult);

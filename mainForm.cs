@@ -10,14 +10,14 @@ namespace E_Commerce
     public partial class SearchForm : Form
     {
         private string connectionString = "Data Source=PAMARAN\\SQLEXPRESS;Initial Catalog=E-Commerce;Integrated Security=True;TrustServerCertificate=True";
-        private int userId;  // ✅ Store user ID
+        private int userId;  
         private string loggedInUsername;
 
 
-        public SearchForm(int loggedInUserId)  // ✅ Accept userId instead of username
+        public SearchForm(int loggedInUserId)  
         {
             InitializeComponent();
-            userId = loggedInUserId;  // ✅ Assign userId
+            userId = loggedInUserId; 
             GetUsername();
             LoadProducts();
         }
@@ -112,7 +112,7 @@ namespace E_Commerce
                                 {
                                     Text = "Stock: " + stock,
                                     Location = new Point(10, 260),
-                                    ForeColor = (stock <= 5) ? Color.Red : Color.Black  // 🔴 Highlight low stock
+                                    ForeColor = (stock <= 5) ? Color.Red : Color.Black  
                                 };
 
                                 Button btnAddToCart = new Button()
@@ -121,7 +121,7 @@ namespace E_Commerce
                                     Width = 100,
                                     Location = new Point(10, 290),
                                     Tag = reader["id"],
-                                    Enabled = stock > 0  // ❌ Disable button if stock is 0
+                                    Enabled = stock > 0  
                                 };
 
                                 btnAddToCart.Click += BtnAddToCart_Click;
@@ -150,11 +150,11 @@ namespace E_Commerce
                 {
                     conn.Open();
 
-                    SqlTransaction transaction = conn.BeginTransaction(); // ✅ Ensure atomicity
+                    SqlTransaction transaction = conn.BeginTransaction(); 
 
                     try
                     {
-                        // ✅ Get latest stock count before processing
+                        
                         string stockQuery = "SELECT stock FROM products WHERE id = @product_id";
                         int currentStock;
 
@@ -171,7 +171,6 @@ namespace E_Commerce
                             return;
                         }
 
-                        // ✅ Get the current quantity in the cart
                         string checkQuery = "SELECT quantity FROM shopping_cart WHERE user_id = @user_id AND product_id = @product_id";
                         int cartQuantity = 0;
 
@@ -196,7 +195,6 @@ namespace E_Commerce
 
                         if (cartQuantity > 0)
                         {
-                            // ✅ Update existing quantity
                             string updateQuery = "UPDATE shopping_cart SET quantity = quantity + 1 WHERE user_id = @user_id AND product_id = @product_id";
                             using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn, transaction))
                             {
@@ -207,7 +205,6 @@ namespace E_Commerce
                         }
                         else
                         {
-                            // ✅ Insert new cart item
                             string insertQuery = "INSERT INTO shopping_cart (user_id, product_id, quantity) VALUES (@user_id, @product_id, 1)";
                             using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction))
                             {
@@ -247,13 +244,13 @@ namespace E_Commerce
             Logout();
         }
 
-        private void flowLayoutPanelProducts_Paint(object sender, PaintEventArgs e) { }
 
+        // dito oopen new form
         private void btnShippingCart_Click(object sender, EventArgs e)
         {
             this.Hide(); // ✅ Hide the mainForm
             ShoppingCartForm cartForm = new ShoppingCartForm(userId, loggedInUsername, this);
-            cartForm.ShowDialog(); // ✅ Open as a modal dialog (pauses mainForm until closed)
+            cartForm.ShowDialog(); 
             this.Show();
         }
         private void ResetPassword()

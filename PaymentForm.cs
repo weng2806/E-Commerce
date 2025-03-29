@@ -89,7 +89,6 @@ namespace E_Commerce
             {
                 string paymentMethod = cmbPaymentMethod.SelectedItem?.ToString();
                 string accountNumber = txtAccountNumber.Text.Trim();
-                decimal paymentAmount = 0;
 
                 if (string.IsNullOrEmpty(paymentMethod))
                 {
@@ -121,13 +120,13 @@ namespace E_Commerce
 
                         try
                         {
-                            // ✅ Insert into orders table and retrieve the generated order_id
+                            // insert order
                             string orderQuery = @"
                     INSERT INTO orders (user_id, total_price, payment_method, account_number)
                     VALUES (@user_id, @total_price, @payment_method, @account_number);
                     SELECT SCOPE_IDENTITY();";
 
-                            int orderIdd; // Changed from orderIdd to orderId
+                            int orderIdd; 
                             using (SqlCommand cmd = new SqlCommand(orderQuery, conn, transaction))
                             {
                                 cmd.Parameters.AddWithValue("@user_id", userId);
@@ -157,7 +156,6 @@ namespace E_Commerce
                                 int productId = item.productId;
                                 int quantity = item.quantity;
 
-                                // ✅ Update stock in products table
                                 string updateStockQuery = "UPDATE products SET stock = stock - @quantity WHERE id = @product_id";
                                 using (SqlCommand updateCmd = new SqlCommand(updateStockQuery, conn, transaction))
                                 {
@@ -166,20 +164,18 @@ namespace E_Commerce
                                     updateCmd.ExecuteNonQuery();
                                 }
 
-                                // ✅ Insert into order_details with correct column name
                                 string insertOrderDetails = @"
                         INSERT INTO order_details (order_idd, product_id, quantity)
-                        VALUES (@order_idd, @product_id, @quantity)"; // Changed order_idd to order_id
+                        VALUES (@order_idd, @product_id, @quantity)"; 
                                 using (SqlCommand orderDetailsCmd = new SqlCommand(insertOrderDetails, conn, transaction))
                                 {
-                                    orderDetailsCmd.Parameters.AddWithValue("@order_idd", orderIdd); // Changed from orderIdd
+                                    orderDetailsCmd.Parameters.AddWithValue("@order_idd", orderIdd); 
                                     orderDetailsCmd.Parameters.AddWithValue("@product_id", productId);
                                     orderDetailsCmd.Parameters.AddWithValue("@quantity", quantity);
                                     orderDetailsCmd.ExecuteNonQuery();
                                 }
                             }
 
-                            // ✅ Clear user's shopping cart after successful order placement
                             string deleteCartQuery = "DELETE FROM shopping_cart WHERE user_id = @user_id";
                             using (SqlCommand cmd = new SqlCommand(deleteCartQuery, conn, transaction))
                             {

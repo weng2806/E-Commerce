@@ -9,13 +9,12 @@ namespace E_Commerce
         private string connectionString = "Data Source=PAMARAN\\SQLEXPRESS;Initial Catalog=E-Commerce;Integrated Security=True;TrustServerCertificate=True";
         private string username;
 
-        // Constructor that receives the username
         public ResetPasswordForm(string loggedInUsername)
         {
             InitializeComponent();
             username = loggedInUsername;
             txtUsername.Text = username;
-            txtUsername.ReadOnly = true; // Prevent editing
+            txtUsername.ReadOnly = true; 
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -23,7 +22,7 @@ namespace E_Commerce
             string oldPassword = txtOldPassword.Text.Trim();
             string newPassword = txtNewPassword.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword))
+            if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword)) // check if fields are empty
             {
                 MessageBox.Show("Please fill in all fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -33,7 +32,6 @@ namespace E_Commerce
             {
                 conn.Open();
 
-                // Check if old password is correct
                 string query = "SELECT password FROM userpass WHERE username = @username";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -48,7 +46,6 @@ namespace E_Commerce
                     }
                 }
 
-                // Update password
                 string updateQuery = "UPDATE userpass SET password = @newPassword WHERE username = @username";
 
                 using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, conn))

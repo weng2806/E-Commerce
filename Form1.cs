@@ -22,7 +22,7 @@ namespace E_Commerce
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Set parameters BEFORE executing the query
+                    // parameters
                     command.Parameters.AddWithValue("@userName", userName.Text);
                     command.Parameters.AddWithValue("@password", password.Text);
 
@@ -74,7 +74,7 @@ namespace E_Commerce
             {
                 conn.Open();
 
-                // Check if username already exists
+                // say no no to another user with the same username
                 string checkQuery = "SELECT COUNT(*) FROM userpass WHERE username = @username";
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                 {
@@ -111,7 +111,6 @@ namespace E_Commerce
             {
                 if (SignUpUser(username, password, "user"))
                 {
-                    // Hide sign-up elements after successful registration
                     txtUsernameee.Visible = false;
                     txtPassworddd.Visible = false;
                     btnConfirmSignUp.Visible = false;

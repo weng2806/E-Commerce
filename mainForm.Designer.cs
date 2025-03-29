@@ -153,7 +153,6 @@
             this.flowLayoutPanelProducts.Size = new System.Drawing.Size(583, 549);
             this.flowLayoutPanelProducts.TabIndex = 22;
             this.flowLayoutPanelProducts.WrapContents = false;
-            this.flowLayoutPanelProducts.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanelProducts_Paint);
             // 
             // SearchForm
             // 
