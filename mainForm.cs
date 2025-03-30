@@ -248,7 +248,7 @@ namespace E_Commerce
         // dito oopen new form
         private void btnShippingCart_Click(object sender, EventArgs e)
         {
-            this.Hide(); // ✅ Hide the mainForm
+            this.Hide(); 
             ShoppingCartForm cartForm = new ShoppingCartForm(userId, loggedInUsername, this);
             cartForm.ShowDialog(); 
             this.Show();
