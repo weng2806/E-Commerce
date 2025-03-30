@@ -11,7 +11,7 @@ namespace E_Commerce
         private string connectionString = "Data Source=PAMARAN\\SQLEXPRESS;Initial Catalog=E-Commerce;Integrated Security=True;TrustServerCertificate=True";
         private int userId;
         private string loggedInUsername;
-        private Form SearchForm; // Store reference to MainForm
+        private Form SearchForm; 
 
         public ShoppingCartForm(int loggedInUserId, string loggedInUsername, Form mainForm)
         {
@@ -34,7 +34,7 @@ namespace E_Commerce
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@userId", userId);
-                    object usernameResult = cmd.ExecuteScalar();  // Renamed from result to usernameResult
+                    object usernameResult = cmd.ExecuteScalar(); 
                     if (usernameResult != null)
                     {
                         loggedInUsername = usernameResult.ToString();
@@ -54,7 +54,7 @@ namespace E_Commerce
                 dgvCart.Columns.Add("TotalPrice", "Total Price");
             }
 
-            dgvCart.Rows.Clear(); // Clear existing rows
+            dgvCart.Rows.Clear(); 
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -75,17 +75,17 @@ namespace E_Commerce
                         while (reader.Read())
                         {
                             dgvCart.Rows.Add(
-                                reader.GetInt32(0),   // Cart ID
-                                reader.GetString(1),  // Product Name
-                                reader.GetInt32(2),   // Quantity
-                                reader.GetDecimal(3), // Price
-                                reader.GetDecimal(4)  // Total Price
+                                reader.GetInt32(0),   
+                                reader.GetString(1),  
+                                reader.GetInt32(2),   
+                                reader.GetDecimal(3),
+                                reader.GetDecimal(4)  
                             );
                         }
                     }
                 }
             }
-            CalculateTotal(); // Update total price
+            CalculateTotal(); 
         }
 
         private void CalculateTotal()
@@ -113,7 +113,7 @@ namespace E_Commerce
                 {
                     conn.Open();
 
-                    // ✅ Calculate total amount
+                   
                     string totalQuery = @"
             SELECT SUM(sc.quantity * p.price) 
             FROM shopping_cart sc 
@@ -133,7 +133,6 @@ namespace E_Commerce
                         return;
                     }
 
-                    // ✅ Check stock availability before placing order
                     string stockQuery = @"
             SELECT sc.product_id, sc.quantity, p.stock 
             FROM shopping_cart sc
