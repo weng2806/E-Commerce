@@ -489,20 +489,57 @@ namespace E_Commerce
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "DELETE FROM products WHERE id=@id";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    conn.Open();
+
+                    // dito check kung may related records sa order details
+                    string checkQuery = "SELECT COUNT(*) FROM order_details WHERE product_id = @id";
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                     {
-                        cmd.Parameters.AddWithValue("@id", productId);
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Product Deleted Successfully!");
-                        LoadProducts();
+                        checkCmd.Parameters.AddWithValue("@id", productId);
+                        int count = (int)checkCmd.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            DialogResult result = MessageBox.Show(
+                                "Do you want to delete it and all related records?",
+                                "Confirm Deletion",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning);
+
+                            if (result == DialogResult.No)
+                            {
+                                return;
+                            }
+
+                            // delete muna sa order details
+                            string deleteOrderDetailsQuery = "DELETE FROM order_details WHERE product_id = @id";
+                            using (SqlCommand deleteOrderCmd = new SqlCommand(deleteOrderDetailsQuery, conn))
+                            {
+                                deleteOrderCmd.Parameters.AddWithValue("@id", productId);
+                                deleteOrderCmd.ExecuteNonQuery();
+                            }
+                        }
                     }
+
+                    // delete product na tunay
+                    string deleteProductQuery = "DELETE FROM products WHERE id = @id";
+                    using (SqlCommand deleteProductCmd = new SqlCommand(deleteProductQuery, conn))
+                    {
+                        deleteProductCmd.Parameters.AddWithValue("@id", productId);
+                        deleteProductCmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("PASABOGGGG!");
+                    LoadProducts();
                 }
             }
             catch (FormatException)
             {
                 MessageBox.Show("Please enter a valid numeric Product ID.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Database Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void SearchUser()
@@ -756,7 +793,5 @@ namespace E_Commerce
         {
             AddCartt();
         }
-
-       
     }
 }
