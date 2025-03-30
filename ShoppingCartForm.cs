@@ -11,7 +11,7 @@ namespace E_Commerce
         private string connectionString = "Data Source=PAMARAN\\SQLEXPRESS;Initial Catalog=E-Commerce;Integrated Security=True;TrustServerCertificate=True";
         private int userId;
         private string loggedInUsername;
-        private Form SearchForm; 
+        private Form SearchForm; // Store reference to MainForm
 
         public ShoppingCartForm(int loggedInUserId, string loggedInUsername, Form mainForm)
         {
@@ -34,7 +34,7 @@ namespace E_Commerce
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@userId", userId);
-                    object usernameResult = cmd.ExecuteScalar();  
+                    object usernameResult = cmd.ExecuteScalar();  // Renamed from result to usernameResult
                     if (usernameResult != null)
                     {
                         loggedInUsername = usernameResult.ToString();
@@ -54,7 +54,7 @@ namespace E_Commerce
                 dgvCart.Columns.Add("TotalPrice", "Total Price");
             }
 
-            dgvCart.Rows.Clear(); 
+            dgvCart.Rows.Clear(); // Clear existing rows
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -85,7 +85,7 @@ namespace E_Commerce
                     }
                 }
             }
-            CalculateTotal(); 
+            CalculateTotal(); // Update total price
         }
 
         private void CalculateTotal()
@@ -102,7 +102,7 @@ namespace E_Commerce
         {
                 if (dgvCart.Rows.Count == 0)
                 {
-                    MessageBox.Show("Your cart is empty! atat", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Your cart is empty! Add items before placing an order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -113,6 +113,7 @@ namespace E_Commerce
                 {
                     conn.Open();
 
+                    // ✅ Calculate total amount
                     string totalQuery = @"
             SELECT SUM(sc.quantity * p.price) 
             FROM shopping_cart sc 
@@ -131,7 +132,8 @@ namespace E_Commerce
                         MessageBox.Show("Your cart is empty or contains invalid items!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    // check muna stock before order
+
+                    // ✅ Check stock availability before placing order
                     string stockQuery = @"
             SELECT sc.product_id, sc.quantity, p.stock 
             FROM shopping_cart sc

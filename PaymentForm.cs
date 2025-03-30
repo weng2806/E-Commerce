@@ -20,30 +20,33 @@ namespace E_Commerce
             totalAmount = total;
             lblTotal.Text = "Total Amount: ₱" + totalAmount.ToString("N2");
 
+            // ✅ Populate payment methods
             cmbPaymentMethod.Items.Clear();
             cmbPaymentMethod.Items.Add("Cash on Delivery");
             cmbPaymentMethod.Items.Add("Bank Payment");
 
+            // ✅ Populate bank list
             cmbBank.Items.Add("BDO");
             cmbBank.Items.Add("UnionBank");
             cmbBank.Items.Add("DBP");
 
-
+            // ✅ Set default selection
             cmbPaymentMethod.SelectedIndex = 0;
 
+            // ✅ Hide bank-related fields initially
 
             this.shoppingCartForm = shoppingCartForm;
         }
 
         private void PaymentForm_Load(object sender, EventArgs e)
         {
-              
+                // ❌ Hide Bank Payment fields by default
                 cmbBank.Visible = false;
                 txtAccountNumber.Visible = false;
                 aa.Visible = false;
                 awit.Visible = false;
 
-                lblCODMessage.Visible = false; 
+                lblCODMessage.Visible = false; // Hide COD message initially
         }
 
         public string PaymentMethod { get; private set; }
@@ -60,15 +63,17 @@ namespace E_Commerce
 
             if (selectedPayment == "Bank Payment")
             {
+                // ✅ Show Bank Payment Fields
                 cmbBank.Visible = true;
                 txtAccountNumber.Visible = true;
                 aa.Visible = true;
                 awit.Visible = true;
 
-                lblCODMessage.Visible = false; 
+                lblCODMessage.Visible = false; // Hide COD message
             }
             else if (selectedPayment == "Cash on Delivery")
             {
+                // ✅ Hide Bank Payment Fields
                 cmbBank.Visible = false;
                 txtAccountNumber.Visible = false;
                 aa.Visible = false;
