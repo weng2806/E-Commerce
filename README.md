@@ -1,2 +1,2 @@
 # E-Commerce
-# with visual, code inlined. VsCode
+# with visuals, code inlined. Visual Studio 2022 IDE
